@@ -37,7 +37,7 @@ const uploadFilesToCloudinary = async (files=[]) => {
    // Local fallback
     return new Promise(async(resolve, reject) => {
       try {
-        const uploadsDir = path.join(__dirname, "../../uploads");
+        const uploadsDir = path.join(__dirname, "../../uploads/avatar");
         
 
         if (!fs.existsSync(uploadsDir)) {
