@@ -48,7 +48,7 @@ const Login = () => {
   };
 
   const signupHandle = async () => {
-    if (!SignUpName || !username.value || !password.value) {
+    if (!SignUpName || !username.validate() || !password.validate()) {
       toast.error("All fields are required!");
       return;
     }
