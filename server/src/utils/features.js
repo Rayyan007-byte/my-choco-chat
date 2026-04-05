@@ -27,6 +27,7 @@ const uploadFilesToCloudinary = async (files=[]) => {
     return new Promise((resolve, reject) => {
       cloudinary.uploader.upload(getBase64(file), {
         resource_type: "auto",
+        folder: "avatars",
         public_id: uuid()
       }, (error, result) => {
         if(error) return reject(error);
@@ -53,7 +54,7 @@ const uploadFilesToCloudinary = async (files=[]) => {
 
         resolve({
           public_id: filename,
-          secure_url: `/uploads/${filename}`,
+          secure_url: `/uploads/avatar/${filename}`,
         });
 
       } catch (err) {

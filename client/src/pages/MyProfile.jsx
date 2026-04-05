@@ -3,36 +3,45 @@ import { useDispatch } from "react-redux";
 import MainLayout from "../components/layout/MainLayout";
 import axios from "axios";
 import { setSenderId } from "../redux/slice";
-import { Link } from "react-router-dom";
+import ProfileCard from "../components/cards/ProfileCard";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const [Profile, setProfile] = useState({});
+  const [Profile, setProfile] = useState(null);
 
   useEffect(() => {
     const fetchMe = async () => {
       const res = await axios.get("http://localhost:3000/api/v1/user/get-me", {
         withCredentials: true,
       });
-      // console.log("mee", res.data.profile._id);
       dispatch(setSenderId(res.data.profile._id));
       setProfile(res.data.profile);
     };
     fetchMe();
   }, []);
 
+  if (!Profile) return <p className="text-white">Loading...</p>; // safe fallback
+
   return (
-    <>
-      {Profile && (
-        <div className="flex flex-col items-center justify-center w-full h-full relative">
-          <Link to="/main" className="absolute top-0 left-0">
-            back
-          </Link>
-          <div>{Profile.name}</div>
-          <div>{Profile._id}</div>
-        </div>
-      )}
-    </>
+    <div className="flex items-center justify-center min-h-screen bg-orange-950 p-4">
+      <ProfileCard
+        profile={{
+          ...Profile,
+         /*  avatar: {
+            url: Profile.avatar?.url
+              ? `http://localhost:3000${Profile.avatar.url}`
+              : "/default-avatar.png",
+          }, */
+          avatar: {
+            url: Profile.avatar?.url
+            ? Profile.avatar?.url.startsWith("http")
+              ? Profile.avatar?.url 
+              : `http://localhost:3000${Profile.avatar.url}`
+            : "Default"
+          }
+        }}
+      />
+    </div>
   );
 };
 
