@@ -19,7 +19,7 @@ const MainLayout = () => (WrappedComponent) => {
     useEffect(() => {
       if (!socket) return;
       socket.on("connect", () => {
-        console.log("new user connected", socket.id);
+        // console.log("new user connected", socket.id);
       });
       return () => socket.off("connect");
     }, [socket]);

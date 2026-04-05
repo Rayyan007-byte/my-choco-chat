@@ -12,7 +12,7 @@ const MessageInput = ({ onSend }) => {
     
     e.preventDefault(); // 🔥 stops page reload
     if (!messageInput.trim()) return;
-    console.log("MessageInput:", messageInput); // this will log correctly
+    // console.log("MessageInput:", messageInput);
     onSend(messageInput); // 👈 send to parent
     setMessageInput(""); // clear input
   };
