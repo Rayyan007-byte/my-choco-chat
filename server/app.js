@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const connectDB = require("./config/connectDB");
 const userRoute = require("./src/routes/user.route");
@@ -23,6 +24,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/chat", chatRoute);

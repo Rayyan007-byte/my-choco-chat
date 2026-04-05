@@ -24,7 +24,6 @@ const ChatItem = () => {
           `http://localhost:3000/api/v1/chat/get-message/${chatId}`,
           { withCredentials: true }
         );
-        console.log("chat res", res.data.message);
         setOldMessages(res.data.message);
       } catch (err) {
         console.error(
