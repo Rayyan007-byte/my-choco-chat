@@ -36,3 +36,4 @@ cd client
 npm install
 ## 🔐 𝐀𝐃𝐌𝐈𝐍 𝐀𝐂𝐂𝐄𝐒𝐒
 - **Description:** Admin dashboard page where admin can manage users and chats.
+- **Url:**http://localhost:5173/admin
